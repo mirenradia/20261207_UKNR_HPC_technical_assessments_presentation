@@ -1,12 +1,13 @@
 ---
-title: "Template Presentation"
-subtitle: "Event name"
-date: "20XX-YY-ZZ"
+title: "Applying for HPC resources: Technical Assessment"
+subtitle: "UKNR 2026 Meeting"
+date: "2026-12-07"
 date-format: "dddd DD MMMM YYYY"
 from: markdown+emoji
 format:
   clean-revealjs:
     embed-resources: false
+    logo: "media/uknr-logo.png"
     transition: slide
     sc-sb-title: true
     auto-play-media: true
@@ -24,8 +25,48 @@ authors:
 
 ---
 
-# Section 1
+# Introduction and motivation
 
-## First slide title
+## Background and caveats
 
-* A bullet point
+* I have been involved with technical assessments of DiRAC RAC applications for
+  the last 4 years.
+* All of what I'll say directly relates to the technical assessment for DiRAC
+  RAC applications.
+* Most of it should be applicable to applications to other providers such as
+  * EuroHPC
+  * UKRI National Compute Resources (NCR)
+  * etc.
+
+## Why do I need to provide this information?
+
+* We want to be able to:
+  * Understand whether your project/applications will be a good fit for the
+    requested resources.
+  * Work out whether alternative resources might be more appropriate.
+  * Ensure that resources are used efficiently and effectively.
+  * Fairly balance the resources when the total demand exceeds what's available.
+  * Identify opportunities for potential RSE support in order to increase the
+    efficiency of compute resources (more science per resource hour).
+
+# Scaling and performance
+
+## Strong scaling, weak scaling and profiling
+
+## Strong scaling
+
+## Weak scaling
+
+## Considerations for scaling
+
+## Profiling
+
+# Other parts of the application
+
+## Software and support requirements
+
+## Data production and transfer
+
+## Resource request
+
+# Any questions?
