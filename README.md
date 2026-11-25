@@ -1,7 +1,9 @@
-# Quarto Presentation Template
+# Applying for HPC Resources: Technical Assessments
+## UKNR Meeting Dec 2026
 
-This repository template is what Miren uses for creating presentations with
-Quarto.
+This repository contains the slides for Miren's talk about technical
+assessments for HPC resource proposals delivered at the UKNR Dec 2026 meeting
+in Nottingham.
 
 ## Quarto
 
@@ -21,7 +23,8 @@ It should generate a `slides.html` file which you can open with a web browser.
 
 ### GitHub Pages
 
-The slides are published to the GitHub pages site associated to this repository.
+The slides are published
+[here](https://mirenradia.github.io/20261207_UKNR_HPC_technical_assessments_presentation/).
 
 ## License
 
