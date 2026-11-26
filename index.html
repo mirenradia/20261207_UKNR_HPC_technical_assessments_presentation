@@ -189,19 +189,98 @@ Miren Radia
 <h1>Scaling and performance</h1>
 
 </section>
-<section id="strong-scaling-weak-scaling-and-profiling" class="slide level2">
+<section id="strong-scaling-weak-scaling-and-profiling" class="slide level2 smaller">
 <h2>Strong scaling, weak scaling and profiling</h2>
+<ul>
+<li>Amount of computational resource can be number of CPU cores/GPUs/nodes.</li>
+<li>Sometimes, only one of strong/weak scaling is relevant (e.g.&nbsp;if problem sizes are fixed).</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:33%;">
+<h3 id="strong-scaling">Strong scaling</h3>
+<ul>
+<li>Measures how time to solution/speed-up varies for a fixed problem size as the amount of computational resources increases.</li>
+<li>Usually compared to the smallest resource size.</li>
+<li>Ideal/perfect: Increasing resources by a factor of <span class="math inline">\(n\)</span> gives an <span class="math inline">\(n\times\)</span> speed-up.</li>
+</ul>
+</div><div class="column" style="width:33%;">
+<h3 id="weak-scaling">Weak scaling</h3>
+<ul>
+<li>Measures how time to solution varies as the problem size per unit of resource is held constant.</li>
+<li>Ideal/perfect: The time to solution is constant as the amount of resources is varied.</li>
+</ul>
+</div><div class="column" style="width:33%;">
+<h3 id="profiling">Profiling</h3>
+<ul>
+<li>Measures how software behaves at runtime. Can cover many aspects including:
+<ul>
+<li>CPU usage</li>
+<li>Memory usage</li>
+<li>Communication</li>
+<li>GPU usage</li>
+<li>Time spent in routines/functions</li>
+</ul></li>
+</ul>
+</div></div>
 </section>
-<section id="strong-scaling" class="slide level2">
+<section id="strong-scaling-1" class="slide level2 smaller">
 <h2>Strong scaling</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Either:
+<ul>
+<li>Choose a representative problem size for your project.</li>
+<li>If your problem size varies, construct a problem size that fills as much of the available resources (i.e.&nbsp;memory) for the smallest computational resource size you are testing (e.g.&nbsp;a full node).</li>
+</ul></li>
+<li>Plot on a log-log scale as this makes the ideal scaling a straight line.</li>
+<li>Here I have also plotted the <em>scaling efficiency</em> which is the percentage of the ideal speedup achieved (ideally only want to run in &gt;50-70% efficiency regime).</li>
+<li>Drop/tailing off in scaling performance is inevitable as resources increase.</li>
+<li>Small bumps or jumps are also fine.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="media/grteclyn-strong-scaling-tursa.svg"></p>
+<figcaption>Strong scaling results for GRTeclyn on Tursa. The blue line with circle markers is the measured walltimes of the evolution (left vertical axis scale). The dashed orange line is the ideal (or perfect) strong scaling walltimes starting from the measured walltime on 1 node. The green line with square markers is the scaling efficiency (right vertical axis scale)</figcaption>
+</figure>
+</div>
+</div></div>
 </section>
-<section id="weak-scaling" class="slide level2">
+<section id="weak-scaling-1" class="slide level2 smaller">
 <h2>Weak scaling</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>This is relevant if problem sizes (e.g.&nbsp;resolution) are not fixed.</li>
+<li>For the smallest resource size, start with a problem size that fills as much of the available resources (i.e.&nbsp;memory) as possible.</li>
+<li>As the number of resources increases, increase the problem size proportionally so that the work per unit of resource remains the same.
+<ul>
+<li>For example, when you double the number of cores, you could double the length of the grid(s) in a single dimension.</li>
+</ul></li>
+<li>Again, small bumps are fine and some drop in scaling is normal.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="media/dirac-training-weak-scaling.png"></p>
+<figcaption>Weak scaling plot taken from the <a href="https://training-academy.dirac.ac.uk/course/view.php?id=29">DiRAC Scalability Training Course</a></figcaption>
+</figure>
+</div>
+</div></div>
 </section>
 <section id="considerations-for-scaling" class="slide level2">
 <h2>Considerations for scaling</h2>
+<ul>
+<li>Run on the same system/architecture you are applying for (or as close as possible). DiRAC guidance says within the last 5 years.</li>
+<li>Ideally have at least 4 different resource sizes.</li>
+<li>Generally easiest to double the number of resources from the base (e.g.&nbsp;64, 128, 256, 512 cores).</li>
+<li>Be explicit in describing your problem sizes used for scaling plots and how they relate to the problem sizes you intend to run as part of your project.</li>
+<li>Label and caption your plots clearly!</li>
+<li>Best to show both a plot and a table of results.</li>
+</ul>
 </section>
-<section id="profiling" class="slide level2">
+<section id="profiling-1" class="slide level2">
 <h2>Profiling</h2>
 </section></section>
 <section>
