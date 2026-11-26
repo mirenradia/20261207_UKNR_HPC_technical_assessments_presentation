@@ -51,13 +51,108 @@ authors:
 
 # Scaling and performance
 
-## Strong scaling, weak scaling and profiling
+## Strong scaling, weak scaling and profiling {.smaller}
 
-## Strong scaling
+* Amount of computational resource can be number of CPU cores/GPUs/nodes.
+* Sometimes, only one of strong/weak scaling is relevant (e.g. if problem sizes
+  are fixed).
 
-## Weak scaling
+:::: {.columns}
+
+::: {.column width="33%"}
+### Strong scaling
+
+* Measures how time to solution/speed-up varies for a fixed problem size as the
+  amount of computational resources increases.
+* Usually compared to the smallest resource size.
+* Ideal/perfect: Increasing resources by a factor of $n$ gives an $n\times$ 
+  speed-up.
+:::
+
+::: {.column width="33%"}
+### Weak scaling
+
+* Measures how time to solution varies as the problem size per unit of
+  resource is held constant.
+* Ideal/perfect: The time to solution is constant as the amount of resources is
+  varied.
+:::
+
+::: {.column width="33%"}
+### Profiling
+
+* Measures how software behaves at runtime. Can cover many aspects including:
+  * CPU usage
+  * Memory usage
+  * Communication
+  * GPU usage
+  * Time spent in routines/functions
+:::
+
+::::
+
+## Strong scaling {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+* Either:
+  * Choose a representative problem size for your project.
+  * If your problem size varies, construct a problem size that fills as much of
+    the available resources (i.e. memory) for the smallest computational resource
+    size you are testing (e.g. a full node).
+* Plot on a log-log scale as this makes the ideal scaling a straight line.
+* Here I have also plotted the _scaling efficiency_ which is the
+  percentage of the ideal speedup achieved (ideally only want to run in >50-70%
+  efficiency regime).
+* Drop/tailing off in scaling performance is inevitable as resources increase.
+* Small bumps or jumps are also fine.
+:::
+
+::: {.column width="50%"}
+![Strong scaling results for GRTeclyn on Tursa. The blue line with circle
+  markers is the measured walltimes of the evolution (left vertical axis scale).
+  The dashed orange line is the ideal (or perfect) strong scaling walltimes
+  starting from the measured walltime on 1 node. The green line with square
+  markers is the scaling efficiency (right vertical axis
+  scale)](media/grteclyn-strong-scaling-tursa.svg)
+:::
+
+::::
+
+## Weak scaling {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+* This is relevant if problem sizes (e.g. resolution) are not fixed.
+* For the smallest resource size, start with a problem size that fills as much
+  of the available resources (i.e. memory) as possible.
+* As the number of resources increases, increase the problem size proportionally
+  so that the work per unit of resource remains the same.
+  * For example, when you double the number of cores, you could double the
+    length of the grid(s) in a single dimension.
+* Again, small bumps are fine and some drop in scaling is normal.
+:::
+
+::: {.column width="50%"}
+![Weak scaling plot taken from the [DiRAC Scalability Training
+Course](https://training-academy.dirac.ac.uk/course/view.php?id=29)](media/dirac-training-weak-scaling.png)
+:::
+
+::::
 
 ## Considerations for scaling
+
+* Run on the same system/architecture you are applying for (or as close as
+  possible). DiRAC guidance says within the last 5 years.
+* Ideally have at least 4 different resource sizes.
+* Generally easiest to double the number of resources from the base (e.g. 64,
+  128, 256, 512 cores).
+* Be explicit in describing your problem sizes used for scaling plots and how
+  they relate to the problem sizes you intend to run as part of your project.
+* Label and caption your plots clearly!
+* Best to show both a plot and a table of results.
 
 ## Profiling
 
