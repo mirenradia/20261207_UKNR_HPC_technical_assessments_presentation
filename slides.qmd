@@ -17,7 +17,7 @@ format:
 filters:
  - reveal-header
 
-authors:
+author:
  - name: Miren Radia
    role: Research Software Engineer
    affiliations:
@@ -53,7 +53,8 @@ authors:
 
 ## Strong scaling, weak scaling and profiling {.smaller}
 
-* Amount of computational resource can be number of CPU cores/GPUs/nodes.
+* The amount of computational resource can be the number of CPU
+  cores/GPUs/nodes.
 * Sometimes, only one of strong/weak scaling is relevant (e.g. if problem sizes
   are fixed).
 
@@ -99,13 +100,13 @@ authors:
 * Either:
   * Choose a representative problem size for your project.
   * If your problem size varies, construct a problem size that fills as much of
-    the available resources (i.e. memory) for the smallest computational resource
-    size you are testing (e.g. a full node).
+    the available resources (i.e. memory) as possible for the smallest
+    computational resource size you are testing (e.g. a full node).
 * Plot on a log-log scale as this makes the ideal scaling a straight line.
-* Here I have also plotted the _scaling efficiency_ which is the
-  percentage of the ideal speedup achieved (ideally only want to run in >50-70%
+* Here I have also plotted the _scaling efficiency_, which is the
+  percentage of the ideal speed-up achieved (ideally only want to run in >50-70%
   efficiency regime).
-* Drop/tailing off in scaling performance is inevitable as resources increase.
+* Tailing off in scaling performance is inevitable as resources increase.
 * Small bumps or jumps are also fine.
 :::
 
@@ -154,14 +155,61 @@ Course](https://training-academy.dirac.ac.uk/course/view.php?id=29)](media/dirac
 * Label and caption your plots clearly!
 * Best to show both a plot and a table of results.
 
-## Profiling
+## Profiling {.smaller}
+
+* It's possible to have good scaling but poor overall performance.
+* We are looking for evidence that your software is efficient and some effort
+  has been made to understand its performance characteristics for a fixed
+  resource size.
+* You can use your code's internal timers or profiling tools e.g. `perf`,
+  `gprof`, Intel VTune, NVIDIA Nsight Systems or Linaro MAP (commercial)
+* Use a representative problem size for your project and a fixed resource size
+  (e.g. 1 node).
+* If you are profiling on resources smaller than a full node, remember to
+  request exclusive access (on systems which allow node-sharing) to avoid
+  contention with other users' jobs.
+
+![Profiling results for all codes involved in the UKNR benchmarking
+exercise on 4 Tursa/COSMA8 nodes.](media/uknr-profile-comparison.png){width="30%"}
 
 # Other parts of the application
 
 ## Software and support requirements
 
+* Details of high-level software requirements -- we don't need to know every
+  single underlying dependency.
+* We need to know about any unusual requirements (e.g. specific versions of
+  libraries, commercial software licences).
+* Let us know what optimizations have been done to the code, particularly if
+  they were done on the system you are applying for resources on. This is
+  helpful if you don't have time to run new profiling.
+* Also let us know if optimizations still need to be done and whether RSE
+  support is required.
+* If you're not sure, just ask!
+
 ## Data production and transfer
 
-## Resource request
+* We need to know how much data will be produced (even if it will be deleted
+  shortly after it's written) including
+  * Rough number of files
+  * Approximate size of files
+* Unusually large numbers for either may require special management.
+* We also need to know how much data will be transferred to/from the system. If
+  very large data transfers are required, we can point you to specific solutions
+  for this (e.g. Globus).
+
+## Resource request {.smaller}
+
+* Job mix table: Please make sure the numbers add up to the total amount of
+  requested resources (many DiRAC RAC applications don't do this).
+* Ensure the job sizes are in the regime where your code scales well (e.g.
+  >50-70% scaling efficiency).
+* Ideally link job sizes to explicit problem sizes from your scaling plots.
+* Check the resource limits of the system you are applying for (e.g. max job
+  size, walltime).
+* Make sure storage requests are reasonable in the context of your workflow and
+  the amount of data produced from each job.
+  * You shouldn't expect to keep all data produced until the end of your project
+    without clear justification.
 
 # Any questions?
