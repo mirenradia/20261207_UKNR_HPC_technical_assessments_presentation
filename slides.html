@@ -13,6 +13,7 @@
 <link href="slides_files/libs/quarto-contrib/grid-no-htext-1.0.0/grid_no_htext.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.11.9">
 
+  <meta name="author" content="Miren Radia">
   <title>Applying for HPC resources: Technical Assessment</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -192,7 +193,7 @@ Miren Radia
 <section id="strong-scaling-weak-scaling-and-profiling" class="slide level2 smaller">
 <h2>Strong scaling, weak scaling and profiling</h2>
 <ul>
-<li>Amount of computational resource can be number of CPU cores/GPUs/nodes.</li>
+<li>The amount of computational resource can be the number of CPU cores/GPUs/nodes.</li>
 <li>Sometimes, only one of strong/weak scaling is relevant (e.g.&nbsp;if problem sizes are fixed).</li>
 </ul>
 <div class="columns">
@@ -231,11 +232,11 @@ Miren Radia
 <li>Either:
 <ul>
 <li>Choose a representative problem size for your project.</li>
-<li>If your problem size varies, construct a problem size that fills as much of the available resources (i.e.&nbsp;memory) for the smallest computational resource size you are testing (e.g.&nbsp;a full node).</li>
+<li>If your problem size varies, construct a problem size that fills as much of the available resources (i.e.&nbsp;memory) as possible for the smallest computational resource size you are testing (e.g.&nbsp;a full node).</li>
 </ul></li>
 <li>Plot on a log-log scale as this makes the ideal scaling a straight line.</li>
-<li>Here I have also plotted the <em>scaling efficiency</em> which is the percentage of the ideal speedup achieved (ideally only want to run in &gt;50-70% efficiency regime).</li>
-<li>Drop/tailing off in scaling performance is inevitable as resources increase.</li>
+<li>Here I have also plotted the <em>scaling efficiency</em>, which is the percentage of the ideal speed-up achieved (ideally only want to run in &gt;50-70% efficiency regime).</li>
+<li>Tailing off in scaling performance is inevitable as resources increase.</li>
 <li>Small bumps or jumps are also fine.</li>
 </ul>
 </div><div class="column" style="width:50%;">
@@ -280,9 +281,17 @@ Miren Radia
 <li>Best to show both a plot and a table of results.</li>
 </ul>
 </section>
-<section id="profiling-1" class="slide level2">
+<section id="profiling-1" class="slide level2 smaller">
 <h2>Profiling</h2>
-</section></section>
+<ul>
+<li>It’s possible to have good scaling but poor overall performance.</li>
+<li>We are looking for evidence that your software is efficient and some effort has been made to understand its performance characteristics for a fixed resource size.</li>
+<li>You can use your code’s internal timers or profiling tools e.g.&nbsp;<code>perf</code>, <code>gprof</code>, Intel VTune, NVIDIA Nsight Systems or Linaro MAP (commercial)</li>
+<li>Use a representative problem size for your project and a fixed resource size (e.g.&nbsp;1 node).</li>
+<li>If you are profiling on resources smaller than a full node, remember to request exclusive access (on systems which allow node-sharing) to avoid contention with other users’ jobs.</li>
+</ul>
+
+<img data-src="media/uknr-profile-comparison.png" style="width:30.0%" class="r-stretch quarto-figure-center"><p class="caption">Profiling results for all codes involved in the UKNR benchmarking exercise on 4 Tursa/COSMA8 nodes.</p></section></section>
 <section>
 <section id="other-parts-of-the-application" class="title-slide slide level1 center">
 <h1>Other parts of the application</h1>
@@ -290,12 +299,38 @@ Miren Radia
 </section>
 <section id="software-and-support-requirements" class="slide level2">
 <h2>Software and support requirements</h2>
+<ul>
+<li>Details of high-level software requirements – we don’t need to know every single underlying dependency.</li>
+<li>We need to know about any unusual requirements (e.g.&nbsp;specific versions of libraries, commercial software licences).</li>
+<li>Let us know what optimizations have been done to the code, particularly if they were done on the system you are applying for resources on. This is helpful if you don’t have time to run new profiling.</li>
+<li>Also let us know if optimizations still need to be done and whether RSE support is required.</li>
+<li>If you’re not sure, just ask!</li>
+</ul>
 </section>
 <section id="data-production-and-transfer" class="slide level2">
 <h2>Data production and transfer</h2>
+<ul>
+<li>We need to know how much data will be produced (even if it will be deleted shortly after it’s written) including
+<ul>
+<li>Rough number of files</li>
+<li>Approximate size of files</li>
+</ul></li>
+<li>Unusually large numbers for either may require special management.</li>
+<li>We also need to know how much data will be transferred to/from the system. If very large data transfers are required, we can point you to specific solutions for this (e.g.&nbsp;Globus).</li>
+</ul>
 </section>
-<section id="resource-request" class="slide level2">
+<section id="resource-request" class="slide level2 smaller">
 <h2>Resource request</h2>
+<ul>
+<li>Job mix table: Please make sure the numbers add up to the total amount of requested resources (many DiRAC RAC applications don’t do this).</li>
+<li>Ensure the job sizes are in the regime where your code scales well (e.g. &gt;50-70% scaling efficiency).</li>
+<li>Ideally link job sizes to explicit problem sizes from your scaling plots.</li>
+<li>Check the resource limits of the system you are applying for (e.g.&nbsp;max job size, walltime).</li>
+<li>Make sure storage requests are reasonable in the context of your workflow and the amount of data produced from each job.
+<ul>
+<li>You shouldn’t expect to keep all data produced until the end of your project without clear justification.</li>
+</ul></li>
+</ul>
 </section></section>
 <section id="any-questions" class="title-slide slide level1 center">
 <h1>Any questions?</h1>
